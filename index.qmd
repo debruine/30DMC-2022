@@ -1,0 +1,69 @@
+# Overview {-}
+
+```{r cite-packages, include = FALSE}
+# automatically create a bib database for R packages
+# add any packages you want to cite here
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'tidyverse'
+), 'include/packages.bib')
+
+source("R/setup.R")
+```
+
+This is my first year participating in the [30-day map challenge](https://github.com/tjukanovt/30DayMapChallenge). This book uses [quarto](https://quarto.org), an open-source scientific and technical publishing system built on Pandoc.
+
+![](images/30dmc-2022.png)
+
+
+<style>
+.daily_imgs a {
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: contain;
+    width: 31%;
+    height: 0;
+    display: inline-block;
+    margin: 1.5em 1% 0 1%;
+    padding-bottom: 31%;
+    float: left;
+}
+.daily_imgs a span { 
+    position: relative;
+    top: -1.5em;
+}
+
+@media screen and (max-width: 600px) {
+    .daily_imgs a {
+        width: 48%;
+        padding-bottom: 48%;
+    }
+}
+</style>
+
+<div class='daily_imgs'>
+
+```{r day1, eval = TRUE, echo = FALSE, results='asis'}
+chapters <- list.files(".", pattern = "^\\d{2}-.+\\.qmd")
+names <- gsub("(^\\d+-|\\.qmd$)", "", chapters)
+names <- gsub("-", " ", names) |> stringr::str_to_title()
+imgpaths <- sapply(chapters, function(ch) {
+  i <- as.integer(substr(ch, 1, 2))
+  f <- list.files("images", pattern = glue::glue("^day{i}\\.(png|gif)"))
+  if (length(f)) {
+    f[[1]]
+  } else {
+    "logos/logo.png"
+  }
+})
+
+chapters <- gsub("qmd$", "html", chapters)
+
+glue::glue("<a href='{chapters}' style='background-image: url(\"images/{imgpaths}\")'><span>{names}</span></a>") |>
+  paste(collapse = "") |>
+  cat()
+```
+
+</div>
+
+<br style="clear:both;">
