@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "30DMC (2022)",
     "section": "",
-    "text": "This is my first year participating in the 30-day map challenge. This book uses quarto, an open-source scientific and technical publishing system built on Pandoc.\n\n\n\n\nPoints"
+    "text": "This is my first year participating in the 30-day map challenge. This book uses quarto, an open-source scientific and technical publishing system built on Pandoc.\n\n\n\n\nPointsLines"
   },
   {
     "objectID": "01-points.html",
@@ -33,5 +33,68 @@
     "title": "\n1  Points\n",
     "section": "\n1.3 Make it prettier",
     "text": "1.3 Make it prettier\nThere’s no munros on the Northern Isles, so I’ve cropped them out of the map. I also made the colours better. I added a label to geom_point(), which will produce a warning that it isn’t used, but you’ll see why in the next step.\nThe version of Hill House I have doesn’t have lowercase letters, so I’m using all uppercase for the title.\n\nCodemunro_plot <- ggplot() + \n  geom_sf(data = scotland_sf,\n          mapping = aes(),\n          color = \"chocolate4\", \n          fill = \"tan\",\n          size = .1) +\n  coord_sf(xlim = c(-7.4, -2), ylim = c(54.8, 58.5)) +\n  geom_point(aes(label = Name, color = height_ft, y = lat, x = lon), \n             data = arrange(munros, height_ft),\n             size = 0.5) +\n  scale_color_viridis_c(name = \"Height (ft)\",\n                        limits = c(3000, 4500)) +\n  labs(x = NULL, y = NULL,\n       title = \"THE MUNROS OF SCOTLAND\",\n       caption = \"Data from The Database of British and Irish Hills | Plot by @debruine@tech.lgbt\") +\n  theme_map() +\n  theme(legend.position = c(0, 0),\n        legend.background = element_blank(),\n        panel.background = element_rect(fill = \"transparent\", color = \"transparent\"),\n        plot.background = element_rect(fill = \"lightskyblue1\", color = \"transparent\"),\n        plot.title = element_text(family = \"Hill House\", size = 26, hjust = .5)\n  )\n\nmunro_plot\n\n\n\nThe location and height of Scotland’s Munros."
+  },
+  {
+    "objectID": "02-lines.html",
+    "href": "02-lines.html",
+    "title": "\n2  Lines\n",
+    "section": "",
+    "text": "It’s a busy week, so I’m going to stick with the map of Scotland. Let’s plot a straight line between every place I’ve lived in Scotland."
+  },
+  {
+    "objectID": "02-lines.html#map",
+    "href": "02-lines.html#map",
+    "title": "\n2  Lines\n",
+    "section": "\n2.1 Map",
+    "text": "2.1 Map\nFirst, a simple map of Scotland.\n\nCode# load sf data\nscotland_sf <- ne_states(geounit = \"Scotland\", \n                         returnclass = \"sf\")\n\nggplot() + \n  geom_sf(data = scotland_sf)"
+  },
+  {
+    "objectID": "02-lines.html#restrict-coordinates",
+    "href": "02-lines.html#restrict-coordinates",
+    "title": "\n2  Lines\n",
+    "section": "\n2.2 Restrict coordinates",
+    "text": "2.2 Restrict coordinates\nI’m not entirely sure what’s going on with that little island around 14W/57.5N, but let’s chop it out of the plot using coord_sf().\n\nCodeggplot() + \n  geom_sf(data = scotland_sf) +\n  coord_sf(xlim = c(-8, 0), ylim = c(54.7, 61))"
+  },
+  {
+    "objectID": "02-lines.html#colours-and-theme",
+    "href": "02-lines.html#colours-and-theme",
+    "title": "\n2  Lines\n",
+    "section": "\n2.3 Colours and theme",
+    "text": "2.3 Colours and theme\nUse theme_map() from ggthemes to get rid of the latitude and longitude lines. Set the map colour and fill to “darkseagreen4” to get rid of the county lines.\nAdd a background colour to the plot. You can customise pretty much any part of a plot with the theme() function. The plot background is a rectangle, so you customise it using the element_rect() function, which will let you set the fill, colour, size, and linetype of the element.\n\nCode# set theme for all subsequent plots\ntheme_set(theme_map(base_size = 20))\n\nggplot() + \n  geom_sf(data = scotland_sf, \n          color = \"darkseagreen4\", \n          fill = \"darkseagreen4\") +\n  coord_sf(xlim = c(-8, 0), ylim = c(54.7, 61)) +\n  theme(plot.background = element_rect(fill = \"lightsteelblue1\", \n                                       color = \"steelblue\", \n                                       size = 4))"
+  },
+  {
+    "objectID": "02-lines.html#plot-where-ive-lived",
+    "href": "02-lines.html#plot-where-ive-lived",
+    "title": "\n2  Lines\n",
+    "section": "\n2.4 Plot where I’ve lived",
+    "text": "2.4 Plot where I’ve lived\nI’ll make a table of the latitudes and longitudes of places I’ve lived in Scotland (just looked up on Google maps).\n\nCodelived <- tibble::tribble(\n  ~name,            ~years,     ~lat,    ~lon,\n  \"St Andrews\", \"2003-2004\", 56.3398, -2.7967,\n  \"Aberdeen\",   \"2004-2009\", 57.1462, -2.1071,\n  \"Oldmeldrum\", \"2009-2012\", 57.3167, -2.3167,\n  \"Glasgow\",    \"2012-2022\", 55.8642, -4.2518\n)\n\n\n\n\nname\nyears\nlat\nlon\n\n\n\nSt Andrews\n2003-2004\n56.3398\n-2.7967\n\n\nAberdeen\n2004-2009\n57.1462\n-2.1071\n\n\nOldmeldrum\n2009-2012\n57.3167\n-2.3167\n\n\nGlasgow\n2012-2022\n55.8642\n-4.2518\n\n\n\nAnd then add it to the map with geom_point().\n\nCodeggplot() + \n  geom_sf(data = scotland_sf, \n          color = \"darkseagreen4\", \n          fill = \"darkseagreen4\") +\n  coord_sf(xlim = c(-8, 0), ylim = c(54.7, 61)) +\n  geom_point(aes(x = lon, y = lat), lived) +\n  theme(plot.background = element_rect(fill = \"lightsteelblue1\", \n                                       color = \"steelblue\", \n                                       size = 4))"
+  },
+  {
+    "objectID": "02-lines.html#add-labels",
+    "href": "02-lines.html#add-labels",
+    "title": "\n2  Lines\n",
+    "section": "\n2.5 Add Labels",
+    "text": "2.5 Add Labels\nNow add labels for each location with geom_label().\n\nCodeggplot() + \n  geom_sf(data = scotland_sf, \n          color = \"darkseagreen4\", \n          fill = \"darkseagreen4\") +\n  coord_sf(xlim = c(-8, 0), ylim = c(54.7, 61)) +\n  geom_point(aes(x = lon, y = lat), lived) +\n  geom_label(aes(x = lon, y = lat, label = name, fill = years), lived) +\n  theme(plot.background = element_rect(fill = \"lightsteelblue1\", \n                                       color = \"steelblue\", \n                                       size = 4))"
+  },
+  {
+    "objectID": "02-lines.html#customise-legend",
+    "href": "02-lines.html#customise-legend",
+    "title": "\n2  Lines\n",
+    "section": "\n2.6 Customise legend",
+    "text": "2.6 Customise legend\nThe legend needs a little customising, which we can do in the theme() function. If you want to get rid of an element entirely, like the legend background, use element_blank(). Setting the position to c(0, 1) puts the anchor point of the legend in the top left corner; setting the justification to c(0, 1) moved this anchor from the centre of the legend to its top left corner.\nI also used scale_fill_brewer() to change to an orange palette and guides() to remove the letter a from the legend.\n\nCodeggplot() + \n  geom_sf(data = scotland_sf, \n          color = \"darkseagreen4\", \n          fill = \"darkseagreen4\") +\n  coord_sf(xlim = c(-8, 0.2), ylim = c(54.7, 61)) +\n  geom_point(aes(x = lon, y = lat), lived) +\n  geom_label(aes(x = lon, y = lat, label = name, fill = years), lived) +\n  guides(fill = guide_legend(override.aes = aes(label = \"\"))) +\n  scale_fill_brewer(palette = \"Oranges\") +\n  theme(plot.background = element_rect(fill = \"lightsteelblue1\", \n                                       color = \"steelblue\", \n                                       size = 4),\n        legend.position = c(0, 1),\n        legend.justification = c(0, 1),\n        legend.title = element_blank(),\n        legend.background = element_blank())"
+  },
+  {
+    "objectID": "02-lines.html#align-labels",
+    "href": "02-lines.html#align-labels",
+    "title": "\n2  Lines\n",
+    "section": "\n2.7 Align labels",
+    "text": "2.7 Align labels\nThe labels are a bit crowded, so let’s set the horizontal and vertical alignment with hjust and vjust. Alignments of 0 are left- and bottom-justified, while alignments of 1 are right- and top-justified, but you can also use decimal values.\n\nCodeggplot() + \n  geom_sf(data = scotland_sf, \n          color = \"darkseagreen4\", \n          fill = \"darkseagreen4\") +\n  coord_sf(xlim = c(-8, 0), ylim = c(54.7, 61)) +\n  geom_point(aes(x = lon, y = lat), lived) +\n  geom_label(aes(x = lon, y = lat, label = name, fill = years), lived, \n             hjust = c(-.1, -.1, 1.1, 1.1),\n             vjust = c(.5, .8, .2, .5)) +\n  guides(fill = guide_legend(override.aes = aes(label = \"\"))) +\n  scale_fill_brewer(palette = \"Oranges\") +\n  theme(plot.background = element_rect(fill = \"lightsteelblue1\", \n                                       color = \"steelblue\", \n                                       size = 4),\n        legend.position = c(0, 1),\n        legend.justification = c(0, 1),\n        legend.title = element_blank(),\n        legend.background = element_blank())"
+  },
+  {
+    "objectID": "02-lines.html#add-lines",
+    "href": "02-lines.html#add-lines",
+    "title": "\n2  Lines\n",
+    "section": "\n2.8 Add Lines",
+    "text": "2.8 Add Lines\nFinally, let’s add the line that go from each place I’ve lived in order to the next one. My first idea was to use geom_line(), but this put them in order based on x-axis value.\nThe labels are a bit small, so try bumping size up to 6 (this is on an arbitrary scale; not a point size like the base_size of a theme).\n\nCodeggplot() + \n  geom_sf(data = scotland_sf, \n          color = \"darkseagreen4\", \n          fill = \"darkseagreen4\") +\n  coord_sf(xlim = c(-8, 0), ylim = c(54.7, 61)) +\n  geom_point(aes(x = lon, y = lat), lived) +\n  geom_line(aes(x = lon, y = lat), lived) +\n  geom_label(aes(x = lon, y = lat, label = name, fill = years), lived, \n             size = 6,\n             hjust = c(-.1, -.1, 1.1, 1.1),\n             vjust = c(.5, .8, .2, .5)) +\n  guides(fill = guide_legend(override.aes = aes(label = \"\"))) +\n  scale_fill_brewer(palette = \"Oranges\") +\n  theme(plot.background = element_rect(fill = \"lightsteelblue1\", \n                                       color = \"steelblue\", \n                                       size = 4),\n        legend.position = c(0, 1),\n        legend.justification = c(0, 1),\n        legend.title = element_blank(),\n        legend.background = element_blank())\n\n\n\n\n\n\n\nIt was actually the geom_path() function I was after, which connected the points in the order they were in my data frame. I also increased the size of the lines and decreased their alpha.\n\nCodeggplot() + \n  geom_sf(data = scotland_sf, \n          color = \"darkseagreen4\", \n          fill = \"darkseagreen4\") +\n  coord_sf(xlim = c(-8, 0), ylim = c(54.7, 61)) +\n  geom_path(aes(x = lon, y = lat), lived, size = 1.5, alpha = 0.6) +\n  geom_point(aes(x = lon, y = lat), lived) +\n  geom_label(aes(x = lon, y = lat, label = name, fill = years), lived, \n             size = 6,\n             hjust = c(-.1, -.1, 1.1, 1.1),\n             vjust = c(.5, .8, .2, .5)) +\n  guides(fill = guide_legend(override.aes = aes(label = \"\"))) +\n  scale_fill_brewer(palette = \"Oranges\") +\n  theme(plot.background = element_rect(fill = \"lightsteelblue1\", \n                                       color = \"steelblue\", \n                                       size = 4),\n        legend.position = c(0, 1),\n        legend.justification = c(0, 1),\n        legend.title = element_blank(),\n        legend.background = element_blank())"
   }
 ]

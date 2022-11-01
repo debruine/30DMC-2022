@@ -35,9 +35,12 @@ book:
         href: https://github.com/debruine/30DMC-2022
       - icon: mastodon 
         href: https://tech.lgbt/@debruine
+      - icon: twitter 
+        href: https://twitter.com/lisadebruine
   chapters:
     - index.qmd
     - 01-points.qmd
+    - 02-lines.qmd
 
 bibliography: include/book.bib
 csl: include/apa.csl

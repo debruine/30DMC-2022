@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="description" content="Code and charts for the 2022 30-Day Map Challenge">
+<title>30DMC (2022) - 2&nbsp; Lines</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./01-points.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6NP3MF25W3"></script><script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-6NP3MF25W3', { 'anonymize_ip': true});
+</script><script type="application/json" class="js-hypothesis-config">
+{
+  "theme": "clean",
+  "openSidebar": false
+}
+</script><script async="" src="https://hypothes.is/embed.js"></script><link rel="stylesheet" href="include/style.css">
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">
+<span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Lines</span>
+</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">30DMC (2022)</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/debruine/30DMC-2022/" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+<li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=%7Curl%7C">
+            <i class="bi bi-bi-twitter pe-1"></i>
+          Twitter
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=%7Curl%7C">
+            <i class="bi bi-bi-facebook pe-1"></i>
+          Facebook
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=%7Curl%7C">
+            <i class="bi bi-bi-linkedin pe-1"></i>
+          LinkedIn
+          </a>
+        </li>
+    </ul>
+<a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Overview</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-points.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Points</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-lines.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Lines</span></a>
+  </div>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar --><div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#map" id="toc-map" class="nav-link active" data-scroll-target="#map"><span class="toc-section-number">2.1</span>  Map</a></li>
+  <li><a href="#restrict-coordinates" id="toc-restrict-coordinates" class="nav-link" data-scroll-target="#restrict-coordinates"><span class="toc-section-number">2.2</span>  Restrict coordinates</a></li>
+  <li><a href="#colours-and-theme" id="toc-colours-and-theme" class="nav-link" data-scroll-target="#colours-and-theme"><span class="toc-section-number">2.3</span>  Colours and theme</a></li>
+  <li><a href="#plot-where-ive-lived" id="toc-plot-where-ive-lived" class="nav-link" data-scroll-target="#plot-where-ive-lived"><span class="toc-section-number">2.4</span>  Plot where I’ve lived</a></li>
+  <li><a href="#add-labels" id="toc-add-labels" class="nav-link" data-scroll-target="#add-labels"><span class="toc-section-number">2.5</span>  Add Labels</a></li>
+  <li><a href="#customise-legend" id="toc-customise-legend" class="nav-link" data-scroll-target="#customise-legend"><span class="toc-section-number">2.6</span>  Customise legend</a></li>
+  <li><a href="#align-labels" id="toc-align-labels" class="nav-link" data-scroll-target="#align-labels"><span class="toc-section-number">2.7</span>  Align labels</a></li>
+  <li><a href="#add-lines" id="toc-add-lines" class="nav-link" data-scroll-target="#add-lines"><span class="toc-section-number">2.8</span>  Add Lines</a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/debruine/30DMC-2022/edit/master/02-lines.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/debruine/30DMC-2022/issues/new" class="toc-action">Report an issue</a></p><p><a href="https://github.com/debruine/30DMC-2022/blob/master/02-lines.qmd" class="toc-action">View source</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title d-none d-lg-block">
+<span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Lines</span>
+</h1>
+</div>
+
+<div>
+  <div class="description">
+    Code and charts for the 2022 30-Day Map Challenge
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header><p>It’s a busy week, so I’m going to stick with the map of Scotland. Let’s plot a straight line between every place I’ve lived in Scotland.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Setup</summary><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(ggplot2)       <span class="co"># for plotting</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(sf)            <span class="co"># for maps</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(rnaturalearth) <span class="co"># for map coordinates</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(ggthemes)      <span class="co"># for the map theme</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="map" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="map">
+<span class="header-section-number">2.1</span> Map</h2>
+<p>First, a simple map of Scotland.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># load sf data</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>scotland_sf <span class="ot">&lt;-</span> <span class="fu">ne_states</span>(<span class="at">geounit =</span> <span class="st">"Scotland"</span>, </span>
+<span id="cb2-3"><a href="#cb2-3"></a>                         <span class="at">returnclass =</span> <span class="st">"sf"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> scotland_sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="02-lines_files/figure-html/scotland-map-1-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="restrict-coordinates" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="restrict-coordinates">
+<span class="header-section-number">2.2</span> Restrict coordinates</h2>
+<p>I’m not entirely sure what’s going on with that little island around 14W/57.5N, but let’s chop it out of the plot using <code>coord_sf()</code>.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> scotland_sf) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">8</span>, <span class="dv">0</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fl">54.7</span>, <span class="dv">61</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="02-lines_files/figure-html/scotland-map-coords-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="colours-and-theme" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="colours-and-theme">
+<span class="header-section-number">2.3</span> Colours and theme</h2>
+<p>Use <code>theme_map()</code> from <code>ggthemes</code> to get rid of the latitude and longitude lines. Set the map colour and fill to “darkseagreen4” to get rid of the county lines.</p>
+<p>Add a background colour to the plot. You can customise pretty much any part of a plot with the <code>theme()</code> function. The plot background is a rectangle, so you customise it using the <code>element_rect()</code> function, which will let you set the fill, colour, size, and linetype of the element.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># set theme for all subsequent plots</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">theme_set</span>(<span class="fu">theme_map</span>(<span class="at">base_size =</span> <span class="dv">20</span>))</span>
+<span id="cb4-3"><a href="#cb4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> scotland_sf, </span>
+<span id="cb4-6"><a href="#cb4-6"></a>          <span class="at">color =</span> <span class="st">"darkseagreen4"</span>, </span>
+<span id="cb4-7"><a href="#cb4-7"></a>          <span class="at">fill =</span> <span class="st">"darkseagreen4"</span>) <span class="sc">+</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">8</span>, <span class="dv">0</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fl">54.7</span>, <span class="dv">61</span>)) <span class="sc">+</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a>  <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"lightsteelblue1"</span>, </span>
+<span id="cb4-10"><a href="#cb4-10"></a>                                       <span class="at">color =</span> <span class="st">"steelblue"</span>, </span>
+<span id="cb4-11"><a href="#cb4-11"></a>                                       <span class="at">size =</span> <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="02-lines_files/figure-html/scotland-map-theme-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="plot-where-ive-lived" class="level2" data-number="2.4"><h2 data-number="2.4" class="anchored" data-anchor-id="plot-where-ive-lived">
+<span class="header-section-number">2.4</span> Plot where I’ve lived</h2>
+<p>I’ll make a table of the latitudes and longitudes of places I’ve lived in Scotland (just looked up on Google maps).</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>lived <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="sc">~</span>name,            <span class="sc">~</span>years,     <span class="sc">~</span>lat,    <span class="sc">~</span>lon,</span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="st">"St Andrews"</span>, <span class="st">"2003-2004"</span>, <span class="fl">56.3398</span>, <span class="sc">-</span><span class="fl">2.7967</span>,</span>
+<span id="cb5-4"><a href="#cb5-4"></a>  <span class="st">"Aberdeen"</span>,   <span class="st">"2004-2009"</span>, <span class="fl">57.1462</span>, <span class="sc">-</span><span class="fl">2.1071</span>,</span>
+<span id="cb5-5"><a href="#cb5-5"></a>  <span class="st">"Oldmeldrum"</span>, <span class="st">"2009-2012"</span>, <span class="fl">57.3167</span>, <span class="sc">-</span><span class="fl">2.3167</span>,</span>
+<span id="cb5-6"><a href="#cb5-6"></a>  <span class="st">"Glasgow"</span>,    <span class="st">"2012-2022"</span>, <span class="fl">55.8642</span>, <span class="sc">-</span><span class="fl">4.2518</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<table class="table">
+<thead><tr class="header">
+<th style="text-align: left;">name</th>
+<th style="text-align: left;">years</th>
+<th style="text-align: right;">lat</th>
+<th style="text-align: right;">lon</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">St Andrews</td>
+<td style="text-align: left;">2003-2004</td>
+<td style="text-align: right;">56.3398</td>
+<td style="text-align: right;">-2.7967</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Aberdeen</td>
+<td style="text-align: left;">2004-2009</td>
+<td style="text-align: right;">57.1462</td>
+<td style="text-align: right;">-2.1071</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Oldmeldrum</td>
+<td style="text-align: left;">2009-2012</td>
+<td style="text-align: right;">57.3167</td>
+<td style="text-align: right;">-2.3167</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Glasgow</td>
+<td style="text-align: left;">2012-2022</td>
+<td style="text-align: right;">55.8642</td>
+<td style="text-align: right;">-4.2518</td>
+</tr>
+</tbody>
+</table>
+<p>And then add it to the map with <code>geom_point()</code>.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> scotland_sf, </span>
+<span id="cb6-3"><a href="#cb6-3"></a>          <span class="at">color =</span> <span class="st">"darkseagreen4"</span>, </span>
+<span id="cb6-4"><a href="#cb6-4"></a>          <span class="at">fill =</span> <span class="st">"darkseagreen4"</span>) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">8</span>, <span class="dv">0</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fl">54.7</span>, <span class="dv">61</span>)) <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat), lived) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>  <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"lightsteelblue1"</span>, </span>
+<span id="cb6-8"><a href="#cb6-8"></a>                                       <span class="at">color =</span> <span class="st">"steelblue"</span>, </span>
+<span id="cb6-9"><a href="#cb6-9"></a>                                       <span class="at">size =</span> <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="02-lines_files/figure-html/scotland-map-cities-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="add-labels" class="level2" data-number="2.5"><h2 data-number="2.5" class="anchored" data-anchor-id="add-labels">
+<span class="header-section-number">2.5</span> Add Labels</h2>
+<p>Now add labels for each location with <code>geom_label()</code>.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> scotland_sf, </span>
+<span id="cb7-3"><a href="#cb7-3"></a>          <span class="at">color =</span> <span class="st">"darkseagreen4"</span>, </span>
+<span id="cb7-4"><a href="#cb7-4"></a>          <span class="at">fill =</span> <span class="st">"darkseagreen4"</span>) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">8</span>, <span class="dv">0</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fl">54.7</span>, <span class="dv">61</span>)) <span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat), lived) <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat, <span class="at">label =</span> name, <span class="at">fill =</span> years), lived) <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>  <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"lightsteelblue1"</span>, </span>
+<span id="cb7-9"><a href="#cb7-9"></a>                                       <span class="at">color =</span> <span class="st">"steelblue"</span>, </span>
+<span id="cb7-10"><a href="#cb7-10"></a>                                       <span class="at">size =</span> <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="02-lines_files/figure-html/scotland-map-labels-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="customise-legend" class="level2" data-number="2.6"><h2 data-number="2.6" class="anchored" data-anchor-id="customise-legend">
+<span class="header-section-number">2.6</span> Customise legend</h2>
+<p>The legend needs a little customising, which we can do in the <code>theme()</code> function. If you want to get rid of an element entirely, like the legend background, use <code>element_blank()</code>. Setting the position to <code>c(0, 1)</code> puts the anchor point of the legend in the top left corner; setting the justification to <code>c(0, 1)</code> moved this anchor from the centre of the legend to its top left corner.</p>
+<p>I also used <code>scale_fill_brewer()</code> to change to an orange palette and <code>guides()</code> to remove the letter <code>a</code> from the legend.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> scotland_sf, </span>
+<span id="cb8-3"><a href="#cb8-3"></a>          <span class="at">color =</span> <span class="st">"darkseagreen4"</span>, </span>
+<span id="cb8-4"><a href="#cb8-4"></a>          <span class="at">fill =</span> <span class="st">"darkseagreen4"</span>) <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">8</span>, <span class="fl">0.2</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fl">54.7</span>, <span class="dv">61</span>)) <span class="sc">+</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat), lived) <span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat, <span class="at">label =</span> name, <span class="at">fill =</span> years), lived) <span class="sc">+</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">override.aes =</span> <span class="fu">aes</span>(<span class="at">label =</span> <span class="st">""</span>))) <span class="sc">+</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Oranges"</span>) <span class="sc">+</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a>  <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"lightsteelblue1"</span>, </span>
+<span id="cb8-11"><a href="#cb8-11"></a>                                       <span class="at">color =</span> <span class="st">"steelblue"</span>, </span>
+<span id="cb8-12"><a href="#cb8-12"></a>                                       <span class="at">size =</span> <span class="dv">4</span>),</span>
+<span id="cb8-13"><a href="#cb8-13"></a>        <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb8-14"><a href="#cb8-14"></a>        <span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb8-15"><a href="#cb8-15"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb8-16"><a href="#cb8-16"></a>        <span class="at">legend.background =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="02-lines_files/figure-html/scotland-map-legend-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="align-labels" class="level2" data-number="2.7"><h2 data-number="2.7" class="anchored" data-anchor-id="align-labels">
+<span class="header-section-number">2.7</span> Align labels</h2>
+<p>The labels are a bit crowded, so let’s set the horizontal and vertical alignment with <code>hjust</code> and <code>vjust</code>. Alignments of 0 are left- and bottom-justified, while alignments of 1 are right- and top-justified, but you can also use decimal values.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> scotland_sf, </span>
+<span id="cb9-3"><a href="#cb9-3"></a>          <span class="at">color =</span> <span class="st">"darkseagreen4"</span>, </span>
+<span id="cb9-4"><a href="#cb9-4"></a>          <span class="at">fill =</span> <span class="st">"darkseagreen4"</span>) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">8</span>, <span class="dv">0</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fl">54.7</span>, <span class="dv">61</span>)) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat), lived) <span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat, <span class="at">label =</span> name, <span class="at">fill =</span> years), lived, </span>
+<span id="cb9-8"><a href="#cb9-8"></a>             <span class="at">hjust =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">1</span>, <span class="sc">-</span>.<span class="dv">1</span>, <span class="fl">1.1</span>, <span class="fl">1.1</span>),</span>
+<span id="cb9-9"><a href="#cb9-9"></a>             <span class="at">vjust =</span> <span class="fu">c</span>(.<span class="dv">5</span>, .<span class="dv">8</span>, .<span class="dv">2</span>, .<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb9-10"><a href="#cb9-10"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">override.aes =</span> <span class="fu">aes</span>(<span class="at">label =</span> <span class="st">""</span>))) <span class="sc">+</span></span>
+<span id="cb9-11"><a href="#cb9-11"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Oranges"</span>) <span class="sc">+</span></span>
+<span id="cb9-12"><a href="#cb9-12"></a>  <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"lightsteelblue1"</span>, </span>
+<span id="cb9-13"><a href="#cb9-13"></a>                                       <span class="at">color =</span> <span class="st">"steelblue"</span>, </span>
+<span id="cb9-14"><a href="#cb9-14"></a>                                       <span class="at">size =</span> <span class="dv">4</span>),</span>
+<span id="cb9-15"><a href="#cb9-15"></a>        <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb9-16"><a href="#cb9-16"></a>        <span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb9-17"><a href="#cb9-17"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb9-18"><a href="#cb9-18"></a>        <span class="at">legend.background =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="02-lines_files/figure-html/scotland-map-just-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="add-lines" class="level2" data-number="2.8"><h2 data-number="2.8" class="anchored" data-anchor-id="add-lines">
+<span class="header-section-number">2.8</span> Add Lines</h2>
+<p>Finally, let’s add the line that go from each place I’ve lived in order to the next one. My first idea was to use <code>geom_line()</code>, but this put them in order based on x-axis value.</p>
+<p>The labels are a bit small, so try bumping <code>size</code> up to 6 (this is on an arbitrary scale; not a point size like the <code>base_size</code> of a theme).</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> scotland_sf, </span>
+<span id="cb10-3"><a href="#cb10-3"></a>          <span class="at">color =</span> <span class="st">"darkseagreen4"</span>, </span>
+<span id="cb10-4"><a href="#cb10-4"></a>          <span class="at">fill =</span> <span class="st">"darkseagreen4"</span>) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">8</span>, <span class="dv">0</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fl">54.7</span>, <span class="dv">61</span>)) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat), lived) <span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat), lived) <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat, <span class="at">label =</span> name, <span class="at">fill =</span> years), lived, </span>
+<span id="cb10-9"><a href="#cb10-9"></a>             <span class="at">size =</span> <span class="dv">6</span>,</span>
+<span id="cb10-10"><a href="#cb10-10"></a>             <span class="at">hjust =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">1</span>, <span class="sc">-</span>.<span class="dv">1</span>, <span class="fl">1.1</span>, <span class="fl">1.1</span>),</span>
+<span id="cb10-11"><a href="#cb10-11"></a>             <span class="at">vjust =</span> <span class="fu">c</span>(.<span class="dv">5</span>, .<span class="dv">8</span>, .<span class="dv">2</span>, .<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb10-12"><a href="#cb10-12"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">override.aes =</span> <span class="fu">aes</span>(<span class="at">label =</span> <span class="st">""</span>))) <span class="sc">+</span></span>
+<span id="cb10-13"><a href="#cb10-13"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Oranges"</span>) <span class="sc">+</span></span>
+<span id="cb10-14"><a href="#cb10-14"></a>  <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"lightsteelblue1"</span>, </span>
+<span id="cb10-15"><a href="#cb10-15"></a>                                       <span class="at">color =</span> <span class="st">"steelblue"</span>, </span>
+<span id="cb10-16"><a href="#cb10-16"></a>                                       <span class="at">size =</span> <span class="dv">4</span>),</span>
+<span id="cb10-17"><a href="#cb10-17"></a>        <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb10-18"><a href="#cb10-18"></a>        <span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb10-19"><a href="#cb10-19"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb10-20"><a href="#cb10-20"></a>        <span class="at">legend.background =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="02-lines_files/figure-html/scotland-map-lines-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>It was actually the <code>geom_path()</code> function I was after, which connected the points in the order they were in my data frame. I also increased the size of the lines and decreased their alpha.</p>
+<div class="cell" data-layout-align="center">
+<details><summary>Code</summary><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> scotland_sf, </span>
+<span id="cb11-3"><a href="#cb11-3"></a>          <span class="at">color =</span> <span class="st">"darkseagreen4"</span>, </span>
+<span id="cb11-4"><a href="#cb11-4"></a>          <span class="at">fill =</span> <span class="st">"darkseagreen4"</span>) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">8</span>, <span class="dv">0</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fl">54.7</span>, <span class="dv">61</span>)) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a>  <span class="fu">geom_path</span>(<span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat), lived, <span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat), lived) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat, <span class="at">label =</span> name, <span class="at">fill =</span> years), lived, </span>
+<span id="cb11-9"><a href="#cb11-9"></a>             <span class="at">size =</span> <span class="dv">6</span>,</span>
+<span id="cb11-10"><a href="#cb11-10"></a>             <span class="at">hjust =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">1</span>, <span class="sc">-</span>.<span class="dv">1</span>, <span class="fl">1.1</span>, <span class="fl">1.1</span>),</span>
+<span id="cb11-11"><a href="#cb11-11"></a>             <span class="at">vjust =</span> <span class="fu">c</span>(.<span class="dv">5</span>, .<span class="dv">8</span>, .<span class="dv">2</span>, .<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb11-12"><a href="#cb11-12"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">override.aes =</span> <span class="fu">aes</span>(<span class="at">label =</span> <span class="st">""</span>))) <span class="sc">+</span></span>
+<span id="cb11-13"><a href="#cb11-13"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Oranges"</span>) <span class="sc">+</span></span>
+<span id="cb11-14"><a href="#cb11-14"></a>  <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"lightsteelblue1"</span>, </span>
+<span id="cb11-15"><a href="#cb11-15"></a>                                       <span class="at">color =</span> <span class="st">"steelblue"</span>, </span>
+<span id="cb11-16"><a href="#cb11-16"></a>                                       <span class="at">size =</span> <span class="dv">4</span>),</span>
+<span id="cb11-17"><a href="#cb11-17"></a>        <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb11-18"><a href="#cb11-18"></a>        <span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb11-19"><a href="#cb11-19"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb11-20"><a href="#cb11-20"></a>        <span class="at">legend.background =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="02-lines_files/figure-html/scotland-map-final-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section></main><!-- /main --><script>
+// open rdrr links externally ----
+
+var exlinks = document.querySelectorAll("a[href^='https://rdrr.io']");
+var exlink_func = function(){
+  window.open(this.href);
+  return false;
+};
+for (var i = 0; i < exlinks.length; i++) {
+    exlinks[i].addEventListener('click', exlink_func, false);
+}
+
+// visible second sidebar in mobile ----
+
+function move_sidebar() {
+  var toc = document.getElementById("TOC");
+  var small_sidebar = document.querySelector("#quarto-sidebar .sidebar-menu-container");
+  var right_sidebar = document.getElementById("quarto-margin-sidebar");
+
+  if (window.innerWidth < 768) {
+    small_sidebar.append(toc);
+  } else {
+    right_sidebar.append(toc);
+  }
+}
+move_sidebar();
+window.onresize = move_sidebar;
+</script><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./01-points.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Points</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">CC-BY 2022, Lisa DeBruine</div>   
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+<li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/debruine/30DMC-2022">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://tech.lgbt/@debruine">
+      <i class="bi bi-mastodon" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/lisadebruine">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+</div>
+  </div>
+</footer>
+
+
+</body></html>
